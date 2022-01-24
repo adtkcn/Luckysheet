@@ -60,8 +60,12 @@ export function getCellValue(row, column, options = {}) {
         type = 'v',
         order = curSheetOrder
     } = { ...options };
+
     let targetSheetData = Store.luckysheetfile[order].data;
-    let cellData = targetSheetData[row][column];
+    let cellData = null;
+    if (targetSheetData && targetSheetData[row] && targetSheetData[row][column]) {
+        cellData = targetSheetData[row][column];
+    }
     let return_v;
 
     if (getObjType(cellData) == "object") {
